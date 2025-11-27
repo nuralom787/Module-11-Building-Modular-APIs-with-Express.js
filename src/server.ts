@@ -3,6 +3,14 @@ import config from "./config";
 import { RouteHandler, routes } from "./healpers/RouteHandler";
 import "./routes";
 
+function findDynamicRoute(method: string, url: string) {
+    const methodMap = routes.get(method);
+    if (!methodMap) return null;
+
+    // for()
+};
+
+
 const server: Server = http.createServer((req: IncomingMessage, res: ServerResponse) => {
     console.log("Server Is Running: ");
 

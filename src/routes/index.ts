@@ -1,3 +1,4 @@
+import { readUsers, writeUsers } from "../healpers/fileDB";
 import parseBody from "../healpers/parseBody";
 import addRoutes from "../healpers/RouteHandler";
 import sendJson from "../healpers/sendjson";
@@ -21,5 +22,16 @@ addRoutes("GET", "/api", (req, res) => {
 
 addRoutes("POST", "/api/users", async (req, res) => {
     const body = await parseBody(req);
+
+    const users = readUsers();
+
+    const newUser = {
+        ...body,
+    };
+
+    users?.push(newUser);
+
+    writeUsers(users);
+
     sendJson(res, 201, { success: true, body: body });
 });
